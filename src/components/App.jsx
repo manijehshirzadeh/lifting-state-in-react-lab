@@ -24,12 +24,27 @@ const availableIngredients = [
 
 const App = () => {
   const [stack, setStack] = useState([]);
+
+  const handelAddToBurger = (name, color) => {
+    setStack((prev) => [...prev, { name, color }]);
+  };
+
+  const handleRemoveFromBurger = (name) => {
+    setStack((prev) => [...prev].filter((item) => item.name !== name));
+  };
+
   return (
     <main>
       <h1>Burger Stacker</h1>
       <section>
-        <IngredientList availableIngredients={availableIngredients} />
-        <BurgerStack />
+        <IngredientList
+          availableIngredients={availableIngredients}
+          onAddToBurger={handelAddToBurger}
+        />
+        <BurgerStack
+          stack={stack}
+          onRemoveFromBurger={handleRemoveFromBurger}
+        />
       </section>
     </main>
   );

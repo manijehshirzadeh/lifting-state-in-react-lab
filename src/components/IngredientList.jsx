@@ -1,12 +1,18 @@
-const IngredientList = (props) => {
-  const availableIngredients = props.availableIngredients;
+const IngredientList = ({ availableIngredients, onAddToBurger }) => {
   return (
     <ul>
-      {availableIngredients.map((ingredient) => {
+      {availableIngredients.map((ingredient, index) => {
         return (
-          <li key={ingredient.name}>
+          <li
+            key={"IngredientList" + ingredient.name + index}
+            style={{ backgroundColor: ingredient.color }}
+          >
             {ingredient.name}
-            <button>*</button>
+            <button
+              onClick={() => onAddToBurger(ingredient.name, ingredient.color)}
+            >
+              +
+            </button>
           </li>
         );
       })}
